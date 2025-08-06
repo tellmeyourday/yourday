@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jawaban yang Tersimpan</title>
+  <style>
+    body {
+      background-color: #f5fff5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #28a745;
+    }
+
+    .jawaban {
+      background-color: #e0ffe0;
+      border: 2px solid #28a745;
+      padding: 20px;
+      margin-top: 30px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #fff;
+      background-color: #28a745;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+    a:hover {
+      background-color: #1f7a30;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Jawaban yang Kamu Tulis 💬</h1>
+  <div class="jawaban" id="tampilanJawaban">
+    Memuat jawaban...
+  </div>
+
+  <a href="hai 2.html">Kembali ke Halaman Awal</a>
+
+  <script>
+    const listJawaban = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+    const tempat = document.getElementById('tampilanJawaban');
+
+    if (listJawaban.length === 0) {
+      tempat.innerText = "Belum ada jawaban disimpan.";
+    } else {
+      let isi = "";
+      listJawaban.forEach((item, index) => {
+        isi += `<p><strong>Jawaban ${index + 1}</strong> <em>(${item.waktu})</em>:<br>${item.teks}</p><hr>`;
+      });
+      tempat.innerHTML = isi;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Halaman 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+    }
+    #savedMsg {
+      color: green;
+      margin-top: 10px;
+      display: none;
+    }
+    #nextBtn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h2>Tuliskan jawabanmu</h2>
+  <textarea id="jawaban" placeholder="Ketik di sini..."></textarea><br>
+  <button onclick="simpanJawaban()">Kirim Jawaban</button>
+  <p id="savedMsg">Jawaban telah disimpan!</p>
+  <br>
+  <button id="nextBtn" onclick="lanjut()" disabled>Lanjut ke Halaman Berikutnya</button>
+
+  <script>
+    // Cek saat halaman dimuat, aktifkan tombol jika sudah ada jawaban
+    window.onload = function() {
+      const riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+      if (riwayat.length > 0) {
+        document.getElementById('nextBtn').disabled = false;
+      }
+    };
+
+    function simpanJawaban() {
+      const input = document.getElementById('jawaban').value.trim();
+
+      if (input === '') {
+        alert('Jawaban tidak boleh kosong!');
+        return;
+      }
+
+      let riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+      riwayat.push({ teks: input, waktu: new Date().toLocaleString() });
+
+      localStorage.setItem('riwayatJawaban', JSON.stringify(riwayat));
+
+      document.getElementById('savedMsg').style.display = 'block';
+      document.getElementById('nextBtn').disabled = false;
+      document.getElementById('jawaban').value = '';
+    }
+
+    function lanjut() {
+      const riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+
+      if (riwayat.length === 0) {
+        alert('Silakan kirim jawaban terlebih dahulu sebelum melanjutkan.');
+        return;
+      }
+
+      const lastAnswer = riwayat[riwayat.length - 1].teks.toLowerCase();
+
+      // Arahkan ke halaman berbeda sesuai isi jawaban terakhir
+      if (lastAnswer.includes('cinta')) {
+        window.location.href = 'halaman-cinta.html';
+      } else if (lastAnswer.includes('teman')) {
+        window.location.href = 'halaman-teman.html';
+      } else {
+        window.location.href = 'halaman-default.html';
+      }
+    }
+  </script>
+</body>
+</html>
+
