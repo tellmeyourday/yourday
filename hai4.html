@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Emoji Sedih 😢</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #dbeafe; /* biru pastel lembut */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emoji {
+      font-size: 120px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .text {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #333;
+      text-align: center;
+      max-width: 300px;
+      animation: fadeIn 2s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="emoji">😢</div>
+
+  <div class="text">
+    It's okay to feel sad. Healing takes time
+    </div>
+  <div class="text">Even the darkest night will end, and the sun will rise</div>
+  <div class="text">Crying doesn't mean you're weak. It means you've been strong for too long</div>
+  <div class="text">You are not alone. This moment will pass</div>
+  <div class="text">Let it hurt, then let it go.
+    Thank you for sharing your story. Keep going!!!
+  </div>
+
+</body>
+</html>
