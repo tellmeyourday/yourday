@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Animation + Redirect</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #f63131;
+      font-size: 40px;
+    }
+
+    p {
+      color: #555;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e03f3f;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px) scale(1.5);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>WELCOME 💖</h1>
+  <p>Hello! This is a page for you. Enjoy your day!</p>
+  <button onclick="showLoveAndRedirect()">Click me!</button>
+
+  <script>
+    function showLoveAndRedirect() {
+      // Tampilkan animasi love
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerText = '❤️';
+
+      const x = window.innerWidth / 2 + (Math.random() * 100 - 50);
+      const y = window.innerHeight / 2;
+
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+
+      document.body.appendChild(heart);
+
+      // Setelah 2 detik, pindah ke halaman berikutnya
+      setTimeout(() => {
+        window.location.href = 'hai 2.html';  // ganti sesuai halaman yang kamu tuju
+      }, 2000); // waktu tunggu (2 detik)
+    }
+  </script>
+
+</body>
+</html>
