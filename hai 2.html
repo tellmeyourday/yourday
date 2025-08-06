@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Halaman Selanjutnya</title>
+  <style>
+    body {
+      background-color: #e6f7ff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    h1 {
+      color: #007acc;
+      font-size: 42px;
+    }
+
+    p {
+      color: #444;
+      font-size: 18px;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+    a:hover {
+      background-color: #005f99;
+    }
+    h1 {
+      color: #007acc;
+    }
+
+    textarea {
+      width: 80%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #007acc;
+      border-radius: 6px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 20px;
+      background-color: #007acc;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {margin-top: 5px;
+      background-color: #005f99;
+    }
+
+    #nextBtn:disabled {
+      margin-top: 30px;
+    }
+
+    #savedMsg {
+      margin-top: 15px;
+      color: green;
+      font-style: italic;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Page 🎉</h1>
+  <P>How was your day? </P>
+  <p>Tell me today's story and i'll give you the motivation that's suit your today's journey</p>
+  <p> 💖</p>
+  
+  <textarea id="jawaban" placeholder="Type here..."></textarea><br>
+  <button onclick="simpanJawaban()"><a href="hai 3.html">>> SEND</a></button>
+  <br>
+  <p id="savedMsg">✅ Jawabanmu telah disimpan!</p>
+  <button id="nextBtn" onclick="lanjut()">NEXT</button>
+
+<script>
+    // Cek saat halaman dimuat, aktifkan tombol jika sudah ada jawaban
+    window.onload = function() {
+      const riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+      if (riwayat.length > 0) {
+        document.getElementById('nextBtn').disabled = false;
+      }
+    };
+
+    function simpanJawaban() {
+      const input = document.getElementById('jawaban').value.trim();
+
+      if (input === '') {
+        alert('Jawaban tidak boleh kosong!');
+        return;
+      }
+
+      let riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+      riwayat.push({ teks: input, waktu: new Date().toLocaleString() });
+
+      localStorage.setItem('riwayatJawaban', JSON.stringify(riwayat));
+
+      document.getElementById('savedMsg').style.display = 'block';
+      document.getElementById('nextBtn').disabled = false;
+      document.getElementById('jawaban').value = '';
+    }
+
+    function lanjut() {
+      const riwayat = JSON.parse(localStorage.getItem('riwayatJawaban')) || [];
+
+      if (riwayat.length === 0) {
+        alert('Silakan kirim jawaban terlebih dahulu sebelum melanjutkan.');
+        return;
+      }
+
+      const lastAnswer = riwayat[riwayat.length - 1].teks.toLowerCase();
+
+      // Arahkan ke halaman berbeda sesuai isi jawaban terakhir
+      if (lastAnswer.includes('cinta')) {
+        window.location.href = 'hai.html';
+      } else if (lastAnswer.includes('teman')) {
+        window.location.href = 'hai.html';
+      } else {
+        window.location.href = 'halaman-default.html';
+      }
+    }
+  </script>
+
+</body>
+</html>
